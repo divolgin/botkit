@@ -265,9 +265,12 @@ controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your na
 
     });
 
-controller.hears(['expensive', 'how much'], 'direct_message, direct_mention, mention', function(bot, message) {
-    bot.reply(message, 'If you have to ask, you can\'t afford it')
-});
+controller.hears(['expensive', 'how much', 'cost'],
+    'direct_message,direct_mention,mention', function(bot, message) {
+
+        bot.reply(message,'If you have to ask, you can\'t afford it');
+
+    });
 
 
 controller.on(['direct_message', 'direct_mention', 'mention'], function(bot,message) {
