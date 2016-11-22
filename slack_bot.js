@@ -105,7 +105,7 @@ controller.hears(['hello', 'hi'], 'direct_message,direct_mention,mention', funct
 
 controller.hears(['expensive', 'how much'], 'direct_message, direct_mention, mention', function(bot, message) {
     bot.reply('If you have to ask, you can\'t afford it')
-})
+});
 
 controller.hears(['food', 'hungry', 'lunch'], 'direct_message,direct_mention,mention', function(bot, message) {
 
