@@ -272,8 +272,7 @@ controller.hears(['expensive', 'how much', 'cost'],
 
     });
 
-controller.hears(['winston'],
-    'direct_message,direct_mention,mention', function(bot, message) {
+controller.hears('winston',['direct_message,direct_mention,mention'], function(bot, message) {
 
         bot.reply(message,':heart_eyes:');
 
