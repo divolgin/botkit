@@ -257,7 +257,7 @@ controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your na
     'direct_message,direct_mention,mention', function(bot, message) {
 
         var hostname = os.hostname();
-        var uptime = formatUptime(process.uptime());
+        var uptime = Number(formatUptime(process.uptime()).toFixed(2);
 
         bot.reply(message,
             ':robot_face: I am a bot named <@' + bot.identity.name +
