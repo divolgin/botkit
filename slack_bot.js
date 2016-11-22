@@ -133,7 +133,7 @@ controller.hears(['food', 'hungry', 'lunch'], 'direct_message,direct_mention,men
                     if (user && user.name) {
                         bot.reply(message, 'Hello ' + user.name + ', today\'s food truck tweet is: ' + returnedData);
                     } else {
-                        bot.reply(message, 'Hello, today\'s food truck is tweet is: ' + returnedData);
+                        bot.reply(message, 'Hello, today\'s food truck tweet is: ' + returnedData);
                     }
                 }
             }
