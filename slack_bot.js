@@ -103,10 +103,6 @@ controller.hears(['hello', 'hi'], 'direct_message,direct_mention,mention', funct
     });
 });
 
-controller.hears(['expensive', 'how much'], 'direct_message, direct_mention, mention', function(bot, message) {
-    bot.reply('If you have to ask, you can\'t afford it')
-});
-
 controller.hears(['food', 'hungry', 'lunch'], 'direct_message,direct_mention,mention', function(bot, message) {
 
     bot.api.reactions.add({
@@ -268,6 +264,11 @@ controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your na
              '>. I have been running for ' + uptime + ' on ' + hostname + '.');
 
     });
+
+controller.hears(['expensive', 'how much'], 'direct_message, direct_mention, mention', function(bot, message) {
+    bot.reply(message, 'If you have to ask, you can\'t afford it')
+});
+
 
 controller.on(['direct_message', 'direct_mention', 'mention'], function(bot,message) {
     if (/[а-яА-ЯЁё]/.test(message.text)) {
