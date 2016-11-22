@@ -272,6 +272,12 @@ controller.hears(['expensive', 'how much', 'cost'],
 
     });
 
+controller.hears(['winston'],
+    'direct_message,direct_mention,mention', function(bot, message) {
+
+        bot.reply(message,':heart_eyes:');
+
+    });
 
 controller.on(['direct_message', 'direct_mention', 'mention'], function(bot,message) {
     if (/[а-яА-ЯЁё]/.test(message.text)) {
