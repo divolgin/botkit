@@ -125,18 +125,17 @@ controller.hears(['food', 'truck', 'hungry', 'lunch'], 'direct_message,direct_me
         , access_token:         process.env.ACCESS_TOKEN
         , access_token_secret:  process.env.ACCESS_TOKEN_SECRET
         })
-        T.get('search/tweets', { q: 'blackwelder from:streetfoodla since:' + todaysDate(), count: 1 }, function(err, data, response) {
-            if (!err) {
-                console.log(data.statuses[0].text)
-                returnedData = data.statuses[0].text
-                if (user && user.name) {
-                    bot.reply(message, 'Hello ' + user.name + ', today\'s food truck tweet is: ' + returnedData);
-                } else {
-                    bot.reply(message, 'Hello, today\'s food truck is tweet is: ' + returnedData);
+        T.get('statuses/user_timeline', { count:20, since_id: todaysDate(), trim_user: true, exclude_replies: true, user_id: 2295568387 }, function(err, data, response) {
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].text.indexOf('@bLAckwelder_LA') != -1){
+                    console.log(data[i].text)
+                    returnedData = data[i].text
+                    if (user && user.name) {
+                        bot.reply(message, 'Hello ' + user.name + ', today\'s food truck tweet is: ' + returnedData);
+                    } else {
+                        bot.reply(message, 'Hello, today\'s food truck is tweet is: ' + returnedData);
+                    }
                 }
-            } else {
-                console.log(err)
-                console.log(response)
             }
         })
     });
