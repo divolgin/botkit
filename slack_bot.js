@@ -265,6 +265,10 @@ controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your na
 
     });
 
+controller.on(['direct_message', 'direct_mention', 'mention'], function(bot,message) {
+    bot.reply(message, 'I\'m sorry, I don\'t understand you')
+})
+
 function formatUptime(uptime) {
     var unit = 'second';
     if (uptime > 60) {
