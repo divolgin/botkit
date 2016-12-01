@@ -153,7 +153,7 @@ controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your na
 
     });
 
-controller.hears(['expensive', 'how much', 'cost'],
+controller.hears(['expensive', 'how much', 'cost', 'price'],
     'direct_message,direct_mention,mention', function(bot, message) {
 
         bot.reply(message,'If you have to ask, you can\'t afford it');
@@ -170,7 +170,8 @@ controller.on(['direct_message', 'direct_mention', 'mention'], function(bot,mess
     if (/[а-яА-ЯЁё]/.test(message.text)) {
         bot.reply(message, 'Здравствуйте Дмитрий')
     } else {
-        bot.reply(message, 'I\'m sorry, I don\'t understand you')
+        bot.reply(message, 'Submit a PR')
+        bot.reply(message, 'https://github.com/wlaoh/botkit')
     }
 
 })
