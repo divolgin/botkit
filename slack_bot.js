@@ -141,6 +141,15 @@ controller.hears(['food', 'hungry', 'lunch'], 'direct_message,direct_mention,men
     });
 });
 
+controller.hears(['donut'], 'direct_message,direct_mention,mention', function(bot, message) {
+
+  people = ['dex', 'dmitriy', 'ethan', 'graysonnull', 'jorgeolivero', 'shailie', 'winston'];
+  tuesday = nearestTuesday();
+  name = people[(tuesday.date.getDate() - 1) % people.length];
+  bot.reply(message, '@' + name + ' is bringing donuts in ' + tuesday.days + ' days.');
+
+});
+
 controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your name'],
     'direct_message,direct_mention,mention', function(bot, message) {
 
@@ -210,4 +219,24 @@ function todaysDate() {
 
     today = yyyy+'-'+mm+'-'+dd;
     return today;
+}
+
+function nearestTuesday() {
+    today = new Date();
+    curDay = today.getDay();
+    // 2 is this week's Tuesday
+    // 9 is next week's Tuesday
+    if (curDay <= 2) {
+      diffDays = 2 - curDay;
+    } else {
+      diffDays = 9 - curDay;
+    }
+
+    var result = new Date(today);
+    result.setDate(result.getDate() + diffDays);
+
+    return {
+        date: new Date(result),
+        days: diffDays
+    };
 }
