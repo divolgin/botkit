@@ -145,8 +145,12 @@ controller.hears(['donut'], 'direct_message,direct_mention,mention', function(bo
 
   people = ['dex', 'dmitriy', 'ethan', 'graysonnull', 'jorgeolivero', 'shailie', 'winston'];
   tuesday = nearestTuesday();
-  name = people[(tuesday.date.getDate() - 1) % people.length];
-  bot.reply(message, '@' + name + ' is bringing donuts in ' + tuesday.days + ' days.');
+  name = people[tuesday.daysSinceEpoch % people.length];
+  if (tuesday.daysTilDonuts == 0) {
+    bot.reply(message, '@' + name + ' is supposed to bring donuts today!');
+  } else {
+    bot.reply(message, '@' + name + ' is bringing donuts in ' + tuesday.daysTilDonuts + ' days.');
+  }
 
 });
 
@@ -223,6 +227,8 @@ function todaysDate() {
 
 function nearestTuesday() {
     today = new Date();
+    today.setHours(12, 0, 0) // use noon to aleviate timezone weirdness.
+
     curDay = today.getDay();
     // 2 is this week's Tuesday
     // 9 is next week's Tuesday
@@ -236,7 +242,7 @@ function nearestTuesday() {
     result.setDate(result.getDate() + diffDays);
 
     return {
-        date: new Date(result),
-        days: diffDays
+        daysSinceEpoch: Math.round(result / 1000 / 60 / 60 / 24),
+        daysTilDonuts: diffDays
     };
 }
