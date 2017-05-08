@@ -145,7 +145,7 @@ controller.hears(['donut'], 'direct_message,direct_mention,mention', function(bo
 
   people = ['dex', 'dmitriy', 'ethan', 'graysonnull', 'jorgeolivero', 'shailie', 'winston'];
   tuesday = nearestTuesday();
-  name = people[tuesday.daysSinceEpoch % people.length];
+  name = people[tuesday.tuesdaysSinceEpoch % people.length];
   if (tuesday.daysTilDonuts == 0) {
     bot.reply(message, '@' + name + ' is supposed to bring donuts today!');
   } else {
@@ -242,7 +242,7 @@ function nearestTuesday() {
     result.setDate(result.getDate() + diffDays);
 
     return {
-        daysSinceEpoch: Math.round(result / 1000 / 60 / 60 / 24),
+        tuesdaysSinceEpoch: Math.round(result / 1000 / 60 / 60 / 24 / 7),
         daysTilDonuts: diffDays
     };
 }
