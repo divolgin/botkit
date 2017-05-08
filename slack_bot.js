@@ -143,7 +143,7 @@ controller.hears(['food', 'hungry', 'lunch'], 'direct_message,direct_mention,men
 
 controller.hears(['donut'], 'direct_message,direct_mention,mention', function(bot, message) {
 
-  people = ['dex', 'dmitriy', 'ethan', 'graysonnull', 'jorgeolivero', 'shailie', 'winston'];
+  people = ['dex', 'dmitriy', 'ethan', 'graysonnull', 'shailie', 'winston'];
   tuesday = nearestTuesday();
   name = people[tuesday.tuesdaysSinceEpoch % people.length];
   if (tuesday.daysTilDonuts == 0) {
